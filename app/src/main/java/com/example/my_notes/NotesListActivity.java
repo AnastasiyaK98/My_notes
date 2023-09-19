@@ -105,6 +105,18 @@ public class NotesListActivity extends AppCompatActivity {
             updateRecyclreWork(worknotes);
         }
 
+        //Событие при нажатии на кнопку добавить
+        float_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //Переход из NotesListActivity в NotesTakerActivity
+                Intent intent = new Intent(NotesListActivity.this, NotesTakerActivity.class);
+                //Передача названия выбранного раздела
+                intent.putExtra("selected_folder_name", get_selected_folder1);
+                //Запуск новой Activity, возвращающей результат при завершении в виде requestCode 101 - создание заметки
+                startActivityForResult(intent, 101);
+            }
+        });
 
     }
 
