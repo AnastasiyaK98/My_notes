@@ -58,11 +58,11 @@ public class MainActivity extends AppCompatActivity {
                 personal.setBackgroundResource(R.drawable.rounding_color);
                 work.setBackgroundResource(R.drawable.rounding);
                //Переход из MainActivity в NotesListActivity
-                Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
+                //Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
                 //Передача значения - строка с названием выбранного раздела
-                intent.putExtra("selected_folder", selected_folder);
+                //intent.putExtra("selected_folder", selected_folder);
                 //Запуск нового Activity
-                startActivity(intent);
+                //startActivity(intent);
                 //Завершение работы данной активности
                 finish();
             }
@@ -75,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 personal.setBackgroundResource(R.drawable.rounding);
                 work.setBackgroundResource(R.drawable.rounding_color);
                 //Переход из MainActivity в NotesListActivity
-               Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
+               //Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
                 //Передача значения - строка с названием выбранного раздела
-               intent.putExtra("selected_folder", selected_folder);
-                startActivity(intent);
+               //intent.putExtra("selected_folder", selected_folder);
+                //startActivity(intent);
                 finish();
             }
         });
@@ -131,9 +131,9 @@ public class MainActivity extends AppCompatActivity {
                 }
                 return buffer.toString();
             } catch(MalformedURLException e){
-                e.printStackTrace();
+                throw new RuntimeException(e);
             } catch(IOException e){
-                e.printStackTrace();
+                throw new RuntimeException(e);
             } finally{
                 if (myConnection != null) {
                     //Закрытие соединения
@@ -144,10 +144,10 @@ public class MainActivity extends AppCompatActivity {
                         //Закрытие считывания
                         reader.close();
                 } catch (IOException e) {
-                    e.printStackTrace();
+                    throw new RuntimeException(e);
                 }
             }
-            return null;
+            //return null;
         }
         @SuppressLint("SetTextI18n")
         @Override
