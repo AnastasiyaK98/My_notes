@@ -36,4 +36,9 @@ dependencies {
     testImplementation("junit:junit:4.13.2")
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
+
+    //Библиотеки  Room для работы с базой данный SQLite
+    implementation ("androidx.room:room-runtime:2.5.2")
+    annotationProcessor ("androidx.room:room-compiler:2.5.2")
+    implementation ("androidx.room:room-rxjava2:2.5.2")
 }
