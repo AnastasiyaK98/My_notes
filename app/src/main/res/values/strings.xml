@@ -1,3 +1,5 @@
 <resources>
     <string name="app_name">Мои заметки</string>
+    <string name="Personal">Личное</string>
+    <string name="Work">Работа</string>
 </resources>
