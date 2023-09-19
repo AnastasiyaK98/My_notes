@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="black">#FF000000</color>
-    <color name="white">#FFFFFFFF</color>
+    <color name="StatusBar">#000000</color>
+    <color name="ActionBar">#b3b5ff</color>
+    <color name="fon">#FFFFFF</color>
+    <color name="color_title_name">#000000</color>
 </resources>
