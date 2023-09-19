@@ -7,4 +7,7 @@
     <string name="name_title">Название заметки</string>
     <string name="hint_text_note">Текст заметки</string>
     <string name="Date">Дата</string>
+    <string name="Name_folder_note">Название раздела - Заметка</string>
+    <string name="name_title_hint">Введите название заметки:</string>
+    <string name="hint_notes_text">Введите текст заметки:</string>
 </resources>

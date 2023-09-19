@@ -1,9 +1,78 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/fon"
+    android:orientation="vertical"
     tools:context=".NotesTakerActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar_notes"
+        android:layout_width="match_parent"
+        android:layout_height="?attr/actionBarSize"
+        android:background="@color/ActionBar">
+
+        <!--стрелка назад-->
+        <ImageView
+            android:id="@+id/back_note"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            android:src="@drawable/icon_back" />
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <!--текст названия раздела -->
+            <TextView
+                android:id="@+id/text_folder_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="20dp"
+                android:fontFamily="@font/nunito_bold"
+                android:text="@string/Name_folder_note"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                />
+            <ImageView
+                android:id="@+id/imageView_save"
+                android:layout_width="?attr/actionBarSize"
+                android:layout_height="?attr/actionBarSize"
+                android:layout_alignParentEnd="true"
+                android:background="@android:color/transparent"
+                android:padding="6dp"
+                android:src="@drawable/ic_save" />
+        </RelativeLayout>
+    </androidx.appcompat.widget.Toolbar>
+
+    <EditText
+        android:id="@+id/editText_title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito_bold"
+        android:hint="@string/name_title_hint"
+        android:padding="14dp"
+        android:singleLine="true"
+        android:textColor="@color/color_title_name"
+        android:textColorHint="@color/color_title_name"
+        android:textSize="18sp"
+       />
+
+    <EditText
+        android:id="@+id/editText_notes"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/nunito"
+        android:hint="@string/hint_notes_text"
+        android:padding="12dp"
+        android:textColor="@color/color_title_name"
+        android:textColorHint="@color/color_title_name"
+        android:textSize="16sp"
+/>
+
+</LinearLayout>
