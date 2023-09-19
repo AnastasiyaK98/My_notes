@@ -145,7 +145,14 @@ public class NotesListActivity extends AppCompatActivity {
     private final PersonalNotesClickListener personalnotesClickListener = new PersonalNotesClickListener() {
         @Override
         public void onClick(PersonalNotes personalnotes) {
-
+            //Переход из NotesListActivity в NotesTakerActivity
+            Intent intent=new Intent(NotesListActivity.this, NotesTakerActivity.class);
+            //Передача значения из personalnotes
+            intent.putExtra("old_note", personalnotes);
+            //Передача названия выбранного раздела
+            intent.putExtra("selected_folder_name", get_selected_folder1);
+            //Запуск новой Activity, возвращающей результат при завершении в виде requestCode 102- редактирование заметки
+            startActivityForResult(intent, 102);
         }
 
         //Долгое нажатие вызывет меню закрепления/удаления заметки
@@ -160,7 +167,14 @@ public class NotesListActivity extends AppCompatActivity {
     private final WorkNotesClickListener worknotesClickListener = new WorkNotesClickListener() {
         @Override
         public void onClick(WorkNotes worknotes) {
-
+            //Переход из NotesListActivity в NotesTakerActivity
+            Intent intent=new Intent(NotesListActivity.this, NotesTakerActivity.class);
+            //Передача значения из worknotes
+            intent.putExtra("old_note",  worknotes);
+            //Передача названия выбранного раздела
+            intent.putExtra("selected_folder_name", get_selected_folder1);
+            //Запуск новой Activity, возвращающей результат при завершении в виде requestCode 102- редактирование заметки
+            startActivityForResult(intent, 102);
         }
 
         //Долгое нажатие вызывет меню закрепления/удаления заметки
