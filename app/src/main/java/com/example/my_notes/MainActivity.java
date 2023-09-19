@@ -57,12 +57,12 @@ public class MainActivity extends AppCompatActivity {
                 //Установка фонового изображения кнопок при нажатии на одну из них
                 personal.setBackgroundResource(R.drawable.rounding_color);
                 work.setBackgroundResource(R.drawable.rounding);
-               //Переход из MainActivity в NotesListActivity
-                //Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
+                //Переход из MainActivity в NotesListActivity
+                Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
                 //Передача значения - строка с названием выбранного раздела
-                //intent.putExtra("selected_folder", selected_folder);
+                intent.putExtra("selected_folder", selected_folder);
                 //Запуск нового Activity
-                //startActivity(intent);
+                startActivity(intent);
                 //Завершение работы данной активности
                 finish();
             }
@@ -75,10 +75,10 @@ public class MainActivity extends AppCompatActivity {
                 personal.setBackgroundResource(R.drawable.rounding);
                 work.setBackgroundResource(R.drawable.rounding_color);
                 //Переход из MainActivity в NotesListActivity
-               //Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
+                Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
                 //Передача значения - строка с названием выбранного раздела
-               //intent.putExtra("selected_folder", selected_folder);
-                //startActivity(intent);
+                intent.putExtra("selected_folder", selected_folder);
+                startActivity(intent);
                 finish();
             }
         });

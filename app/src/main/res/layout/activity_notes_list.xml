@@ -1,9 +1,81 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/list_my_notes"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/fon"
     tools:context=".NotesListActivity">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <!--список-->
+
+    <androidx.appcompat.widget.SearchView
+        android:id="@+id/search_home"
+        android:layout_width="match_parent"
+        android:layout_height="?android:attr/actionBarSize"
+        android:layout_alignParentTop="true"
+        android:layout_marginTop="76dp"
+        android:layout_marginBottom="26dp"
+        android:layout_marginHorizontal="16dp"
+        android:background="@drawable/rounding_search"
+        app:iconifiedByDefault="false"
+        app:queryHint="Введите текст..."
+        />
+    <!--верхнее меню-->
+    <RelativeLayout
+        android:id="@+id/menu"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:background="@color/ActionBar">
+        <!--стрелка назад-->
+        <ImageView
+            android:id="@+id/back"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/icon_back"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="15dp"
+            />
+        <!--Название раздела-->
+        <TextView
+            android:id="@+id/text_folder"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="60dp"
+            android:fontFamily="@font/nunito_bold"
+            android:text="@string/Name_folder"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            />
+
+    </RelativeLayout>
+    <!--Список заметок-->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/recycler_list"
+        android:layout_below="@+id/search_home"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginBottom="8dp" />
+
+    <!--кнопка добавления-->
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/add_note"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentBottom="true"
+        android:layout_marginStart="26dp"
+        android:layout_marginTop="26dp"
+        android:layout_marginEnd="26dp"
+        android:layout_marginBottom="26dp"
+        android:contentDescription="@string/add"
+        android:src="@drawable/ic_add"
+        android:backgroundTint="@color/color_add"
+        />
+</RelativeLayout>

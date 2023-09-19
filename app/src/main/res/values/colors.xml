@@ -7,4 +7,5 @@
     <color name="black">#000000</color>
     <color name="rounding">#d0dafa</color>
     <color name="color_rounding">#7371FC</color>
+    <color name="color_add">#ffafcc</color>
 </resources>

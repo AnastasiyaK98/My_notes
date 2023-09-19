@@ -2,4 +2,6 @@
     <string name="app_name">Мои заметки</string>
     <string name="Personal">Личное</string>
     <string name="Work">Работа</string>
+    <string name="Name_folder">Название раздела</string>
+    <string name="add">Добавить</string>
 </resources>
