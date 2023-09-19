@@ -8,4 +8,6 @@
     <color name="rounding">#d0dafa</color>
     <color name="color_rounding">#7371FC</color>
     <color name="color_add">#ffafcc</color>
+    <color name="background_notes">#e2e2ff</color>
+    <color name="color_date">#495057</color>
 </resources>

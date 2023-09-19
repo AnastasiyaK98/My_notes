@@ -4,4 +4,7 @@
     <string name="Work">Работа</string>
     <string name="Name_folder">Название раздела</string>
     <string name="add">Добавить</string>
+    <string name="name_title">Название заметки</string>
+    <string name="hint_text_note">Текст заметки</string>
+    <string name="Date">Дата</string>
 </resources>
