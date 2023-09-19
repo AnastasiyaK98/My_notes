@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity {
                 //Установка фонового изображения кнопок при нажатии на одну из них
                 personal.setBackgroundResource(R.drawable.rounding_color);
                 work.setBackgroundResource(R.drawable.rounding);
-                //Переход из MainActivity в NotesListActivity
+               //Переход из MainActivity в NotesListActivity
                 Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
                 //Передача значения - строка с названием выбранного раздела
                 intent.putExtra("selected_folder", selected_folder);
@@ -58,8 +58,8 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 selected_folder = "Работа";
-                personal.setBackgroundResource(R.drawable.round_back);
-                work.setBackgroundResource(R.drawable.round_back_color);
+                personal.setBackgroundResource(R.drawable.rounding);
+                work.setBackgroundResource(R.drawable.rounding_color);
                 //Переход из MainActivity в NotesListActivity
                 Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
                 //Передача значения - строка с названием выбранного раздела
