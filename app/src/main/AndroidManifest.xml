@@ -15,9 +15,12 @@
         android:theme="@style/Base.Theme.My_notes"
         tools:targetApi="31">
         <activity
-            android:name=".NotesListActivity"
-            android:theme="@style/Base.Theme.My_notes.NoActionBar"
+            android:name=".NotesTakerActivity"
             android:exported="false" />
+        <activity
+            android:name=".NotesListActivity"
+            android:exported="false"
+            android:theme="@style/Base.Theme.My_notes.NoActionBar" />
         <activity
             android:name=".MainActivity"
             android:exported="true">
