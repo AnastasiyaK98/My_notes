@@ -88,6 +88,13 @@ public class AdapterPersonal extends RecyclerView.Adapter<PersonalNotesViewHolde
     public int getItemCount() {
         return list.size();
     }
+
+    //Для сообщения адаптеру о том, что список элементов изменился при поиске заметки
+    // и ему нужно  перерисовать элементы на экране.
+    public void filterListPersonal (List<PersonalNotes> filteredList) {
+        list = filteredList;
+        notifyDataSetChanged();
+    }
 }
 
 // Предоставляет прямую ссылку на каждый View-компонент

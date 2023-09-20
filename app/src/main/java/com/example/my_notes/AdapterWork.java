@@ -12,6 +12,7 @@ import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 
+import com.example.my_notes.Models.PersonalNotes;
 import com.example.my_notes.Models.WorkNotes;
 
 import java.util.List;
@@ -88,6 +89,13 @@ public class AdapterWork extends RecyclerView.Adapter<WorkNotesViewHolder>{
     //Сообщает количество элементов в списке
     public int getItemCount() {
         return list.size();
+    }
+
+    //Для сообщения адаптеру о том, что список элементов изменился при поиске заметки
+    // и ему нужно  перерисовать элементы на экране.
+    public void filterListWork (List<WorkNotes> filteredList) {
+        list = filteredList;
+        notifyDataSetChanged();
     }
 }
 

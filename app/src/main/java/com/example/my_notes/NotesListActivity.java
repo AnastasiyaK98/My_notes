@@ -120,6 +120,18 @@ public class NotesListActivity extends AppCompatActivity {
             }
         });
 
+        //Событие при поиске заметки
+        search_home.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            //Поиск при нажатии на клавишу
+            public boolean onQueryTextSubmit(String query) {return false;}
+            @Override
+            //Поиск при вводе текста на основе фильтра
+            public boolean onQueryTextChange(String newText) {
+                filter(newText);
+                return false;
+            }
+        });
     }
 
     //Привязка  recyclerView с заметками к адаптеру отображения для таблицы "Личное"
@@ -283,6 +295,41 @@ public class NotesListActivity extends AppCompatActivity {
                     adapterWork.notifyDataSetChanged();
                 }
             }
+        }
+    }
+
+    //Фильтр для поиска
+    private void filter (String newText){
+        //Списки заметок разделов "Личное" и "Работа"
+        List<PersonalNotes> filteredListPersonal = new ArrayList<>();
+        List<WorkNotes> filteredListWork = new ArrayList<>();
+        //Если поиск выполняется в разделе "Личное"
+        if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+            //Сравнение отдельной составляющей со всем списком
+            for (PersonalNotes singleNote : personalnotes) {
+                //Поиск по названию заметки и тексту заметки без учёта регистра
+                if (singleNote.getTitle().toLowerCase().contains(newText.toLowerCase())
+                        || singleNote.getText().toLowerCase().contains(newText.toLowerCase())) {
+                    //Добавляем в список найденных заметок
+                    filteredListPersonal.add(singleNote);
+                }
+            }
+            //Обновление списка на экране
+            adapterPersonal.filterListPersonal(filteredListPersonal);
+        }
+        //Если поиск выполняется в разделе "Работа"
+        else if (get_selected_folder1.equalsIgnoreCase("Работа")){
+            //Сравнение отдельной составляющей со всем списком
+            for (WorkNotes singleNoteWork : worknotes) {
+                //Поиск по названию заметки и тексту заметки без учёта регистра
+                if (singleNoteWork.getTitle().toLowerCase().contains(newText.toLowerCase())
+                        || singleNoteWork.getText().toLowerCase().contains(newText.toLowerCase())) {
+                    //Добавляем в список найденных заметок
+                    filteredListWork.add(singleNoteWork);
+                }
+            }
+            //Обновление списка на экране
+            adapterWork.filterListWork(filteredListWork);
         }
     }
 }
