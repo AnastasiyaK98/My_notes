@@ -22,7 +22,7 @@ ________________________________________________________________________________
 
 1. Главное меню
 
-<img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Главное_меню.png" width=20% height=20%>
+<img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Главное_меню.png" width=30% height=30%>
 
 
 
