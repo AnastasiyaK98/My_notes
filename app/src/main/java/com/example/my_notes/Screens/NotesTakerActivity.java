@@ -1,4 +1,4 @@
-package com.example.my_notes;
+package com.example.my_notes.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.example.my_notes.Models.PersonalNotes;
 import com.example.my_notes.Models.WorkNotes;
+import com.example.my_notes.R;
 
 import java.text.SimpleDateFormat;
 import java.util.Date;

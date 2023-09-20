@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@color/fon"
     android:orientation="vertical"
-    tools:context=".NotesTakerActivity">
+    tools:context=".Screens.NotesTakerActivity">
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_notes"

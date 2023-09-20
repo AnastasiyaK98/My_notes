@@ -1,4 +1,4 @@
-package com.example.my_notes;
+package com.example.my_notes.Adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -11,27 +11,27 @@ import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-
 import com.example.my_notes.Models.PersonalNotes;
-import com.example.my_notes.Models.WorkNotes;
+import com.example.my_notes.PersonalNotesClickListener;
+import com.example.my_notes.R;
 
 import java.util.List;
 
 
 //Наследование адаптера от RecyclerView.Adapter
 //Указание собственного ViewHolder, который предоставит доступ к View-компонентам
-public class AdapterWork extends RecyclerView.Adapter<WorkNotesViewHolder>{
+public class AdapterPersonal extends RecyclerView.Adapter<PersonalNotesViewHolder>{
 
     //Активность
     Context context;
     //Список заметок
-    List<WorkNotes> list;
+    List<PersonalNotes> list;
     //Интерфейс нажатия на заметку
-    WorkNotesClickListener listener;
+    PersonalNotesClickListener listener;
 
 
     //Конструктор с параметрами
-    public AdapterWork(Context context, List<WorkNotes> list, WorkNotesClickListener listener) {
+    public AdapterPersonal(Context context, List<PersonalNotes> list, PersonalNotesClickListener listener) {
         this.context = context;
         this.list = list;
         this.listener = listener;
@@ -40,13 +40,13 @@ public class AdapterWork extends RecyclerView.Adapter<WorkNotesViewHolder>{
     @NonNull
     @Override
     //Метод вызывается для создания объекта ViewHolder
-    public WorkNotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new WorkNotesViewHolder(LayoutInflater.from(context).inflate(R.layout.notes_list, parent, false));
+    public PersonalNotesViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        return new PersonalNotesViewHolder(LayoutInflater.from(context).inflate(R.layout.notes_list, parent, false));
     }
 
     @Override
     //Метод отвечает за связь java объекта и View
-    public void onBindViewHolder(@NonNull WorkNotesViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull PersonalNotesViewHolder holder, int position) {
         holder.text_title.setText(list.get(position).getTitle());
         //Прокрутка текста названия заметки
         holder.text_title.setSelected(true);
@@ -93,7 +93,7 @@ public class AdapterWork extends RecyclerView.Adapter<WorkNotesViewHolder>{
 
     //Для сообщения адаптеру о том, что список элементов изменился при поиске заметки
     // и ему нужно  перерисовать элементы на экране.
-    public void filterListWork (List<WorkNotes> filteredList) {
+    public void filterListPersonal (List<PersonalNotes> filteredList) {
         list = filteredList;
         notifyDataSetChanged();
     }
@@ -101,7 +101,7 @@ public class AdapterWork extends RecyclerView.Adapter<WorkNotesViewHolder>{
 
 // Предоставляет прямую ссылку на каждый View-компонент
 // Используется для кэширования View-компонентов и последующего быстрого доступа к ним
-class WorkNotesViewHolder extends RecyclerView.ViewHolder {
+class PersonalNotesViewHolder extends RecyclerView.ViewHolder {
 
     //Блок заметки
     CardView notes_block;
@@ -112,7 +112,7 @@ class WorkNotesViewHolder extends RecyclerView.ViewHolder {
 
     //Конструктор принимает на вход View-компонент строки
     // и ищет все дочерние компоненты
-    public WorkNotesViewHolder(@NonNull View itemView) {
+    public PersonalNotesViewHolder(@NonNull View itemView) {
         super(itemView);
         notes_block = itemView.findViewById(R.id.notes_block);
         text_title = itemView.findViewById(R.id.text_title);

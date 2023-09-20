@@ -1,4 +1,4 @@
-package com.example.my_notes;
+package com.example.my_notes.Screens;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -18,9 +18,14 @@ import android.widget.PopupMenu;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.my_notes.Adapter.AdapterPersonal;
+import com.example.my_notes.Adapter.AdapterWork;
 import com.example.my_notes.DataBase.AppDataBase;
 import com.example.my_notes.Models.PersonalNotes;
 import com.example.my_notes.Models.WorkNotes;
+import com.example.my_notes.PersonalNotesClickListener;
+import com.example.my_notes.R;
+import com.example.my_notes.WorkNotesClickListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import java.util.ArrayList;

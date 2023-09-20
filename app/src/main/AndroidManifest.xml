@@ -15,15 +15,15 @@
         android:theme="@style/Base.Theme.My_notes"
         tools:targetApi="31">
         <activity
-            android:name=".NotesTakerActivity"
+            android:name=".Screens.NotesTakerActivity"
             android:theme="@style/Base.Theme.My_notes.NoActionBar"
             android:exported="false" />
         <activity
-            android:name=".NotesListActivity"
+            android:name=".Screens.NotesListActivity"
             android:exported="false"
             android:theme="@style/Base.Theme.My_notes.NoActionBar" />
         <activity
-            android:name=".MainActivity"
+            android:name=".Screens.MainActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

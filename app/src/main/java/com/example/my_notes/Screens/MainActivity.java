@@ -1,4 +1,4 @@
-package com.example.my_notes;
+package com.example.my_notes.Screens;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,6 +9,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
+
+import com.example.my_notes.R;
 
 import org.json.JSONException;
 import org.json.JSONObject;
