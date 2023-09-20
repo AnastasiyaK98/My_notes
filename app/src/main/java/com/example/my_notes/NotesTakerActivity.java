@@ -36,6 +36,8 @@ public class NotesTakerActivity extends AppCompatActivity {
     PersonalNotes personalnotes;
     //Объект заметки "Работа"
     WorkNotes worknotes;
+    //Для проверки новая или старая заметка (по умолчанию новая)
+    boolean isOldNote = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -75,6 +77,43 @@ public class NotesTakerActivity extends AppCompatActivity {
             }
         });
 
+
+        //При выполнении редактирования заметки
+        //Если редактировалась заметка в разделе "Личное"
+        if (getSelected_folder.equalsIgnoreCase("Личное")) {
+            //Создание объекта новой заметки
+            personalnotes = new PersonalNotes();
+            try {
+                //Получение исходной заметки
+                personalnotes = (PersonalNotes) getIntent().getSerializableExtra("old_note");
+                //Извлечени названия заметки и помещение в поле ввода editText_title
+                editText_title.setText(personalnotes.getTitle());
+                //Извлечени текста заметки и помещение в поле ввода  editText_notes
+                editText_notes.setText(personalnotes.getText());
+                //Заметка старая
+                isOldNote = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+        //Если редактировалась заметка в разделе "Работа"
+        else if (getSelected_folder.equalsIgnoreCase("Работа")) {
+            //Создание объекта новой заметки
+            worknotes = new WorkNotes();
+            try {
+                //Получение исходной заметки
+                worknotes = (WorkNotes) getIntent().getSerializableExtra("old_note");
+                //Извлечени названия заметки и помещение в поле ввода  editText_title
+                editText_title.setText(worknotes.getTitle());
+                //Извлечени текста заметки и помещение в поле ввода  editText_notes
+                editText_notes.setText(worknotes.getText());
+                //Заметка старая
+                isOldNote = true;
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+        }
+
         //Действия при нажатии на кнопку сохранить
         imageView_save.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -82,14 +121,12 @@ public class NotesTakerActivity extends AppCompatActivity {
                 //Получение названия заметки
                 String title=editText_title.getText().toString();
                 //Получение текста заветки
-                String description=editText_notes.getText().toString();
+                String description =editText_notes.getText().toString();
                 //Проверка введён ли текст заметки
                 if (description.isEmpty()) {
-                    //Всплывающее сообщение
                     Toast.makeText(NotesTakerActivity.this, R.string.no_notes_text, Toast.LENGTH_SHORT).show();
                     return;
                 }
-
                 //Формат даты - день недели, число, месяц, год, время- часы:минуты
                 SimpleDateFormat formater= new SimpleDateFormat("EEE, d MMM yyyy HH:mm");
                 Date date = new Date();
