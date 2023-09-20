@@ -38,8 +38,6 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
     TextView text_folder;
     //Стрелка назад
     ImageView back;
-    //Переменная для передачи названия раздела
-    String get_selected_folder1;
     //Адаптер для раздела "Личное"
     AdapterPersonal adapterPersonal;
     //Адаптер для раздела "Работа"
@@ -79,8 +77,6 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
         //Установка текста в названии ActionBar
         text_folder.setText(get_selected_folder);
 
-        //Сохраняем название раздела в новой переменной для последующей передачи
-        get_selected_folder1=get_selected_folder;
 
         //Событие при нажатии на кнопку назад
         back.setOnClickListener(new View.OnClickListener() {
@@ -102,11 +98,11 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
         worknotes = dataBase.workDAO().getAll();
 
         //Если выбран раздел "Личное"
-        if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+        if (get_selected_folder.equalsIgnoreCase("Личное")) {
             updateRecyclrePersonal(personalnotes);
         }
         //Если выбран раздел "Работа"
-        else if (get_selected_folder1.equalsIgnoreCase("Работа")){
+        else if (get_selected_folder.equalsIgnoreCase("Работа")){
             updateRecyclreWork(worknotes);
         }
 
@@ -117,7 +113,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
                 //Переход из NotesListActivity в NotesTakerActivity
                 Intent intent = new Intent(NotesListActivity.this, NotesTakerActivity.class);
                 //Передача названия выбранного раздела
-                intent.putExtra("selected_folder_name", get_selected_folder1);
+                intent.putExtra("selected_folder_name", get_selected_folder);
                 //Запуск новой Activity, возвращающей результат при завершении в виде requestCode 101 - создание заметки
                 startActivityForResult(intent, 101);
             }
@@ -167,7 +163,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
             //Передача значения из personalnotes
             intent.putExtra("old_note", personalnotes);
             //Передача названия выбранного раздела
-            intent.putExtra("selected_folder_name", get_selected_folder1);
+            intent.putExtra("selected_folder_name", get_selected_folder);
             //Запуск новой Activity, возвращающей результат при завершении в виде requestCode 102- редактирование заметки
             startActivityForResult(intent, 102);
         }
@@ -191,7 +187,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
         public void onClick(WorkNotes worknotes) {
             Intent intent=new Intent(NotesListActivity.this, NotesTakerActivity.class);
             intent.putExtra("old_note",  worknotes);
-            intent.putExtra("selected_folder_name", get_selected_folder1);
+            intent.putExtra("selected_folder_name", get_selected_folder);
             startActivityForResult(intent, 102);
         }
 
@@ -224,7 +220,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
         //Если выбран пункт меню Закрепить/Открепить
         if (item.getItemId()==R.id.pin) {
             //Если в разделе "Личное"
-            if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+            if (get_selected_folder.equalsIgnoreCase("Личное")) {
                 //Если заметка откреплена
                 if (selectedNotePersonal.isPinned()) {
                     //Обновление значения pin в таблице базы данных
@@ -242,7 +238,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
                 adapterPersonal.notifyDataSetChanged();
             }
             //Если в разделе "Работа", действия те же, что и для раздела "Личное"
-            else if (get_selected_folder1.equalsIgnoreCase("Работа")) {
+            else if (get_selected_folder.equalsIgnoreCase("Работа")) {
                 if (selectedNoteWork.isPinned()) {
                     dataBase.workDAO().pin(selectedNoteWork.getUid(), false);
                     Toast.makeText(NotesListActivity.this, R.string.unpinned, Toast.LENGTH_SHORT).show();
@@ -259,7 +255,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
         //Если выбран пункт меню Удалить
         if(item.getItemId()==R.id.delete) {
             //Для раздела "Личное"
-            if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+            if (get_selected_folder.equalsIgnoreCase("Личное")) {
                 //Удаление выбранной заметки из таблицы БД
                 dataBase.personalDAO().delete(selectedNotePersonal);
                 //Удаление выбранной заметки из списка заметок
@@ -270,7 +266,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
                 Toast.makeText(NotesListActivity.this, R.string.delete, Toast.LENGTH_SHORT).show();
             }
             //Для раздела "Работа", действия те же, что и для раздела "Личное"
-            else if (get_selected_folder1.equalsIgnoreCase("Работа")) {
+            else if (get_selected_folder.equalsIgnoreCase("Работа")) {
                 dataBase.workDAO().delete(selectedNoteWork);
                 worknotes.remove(selectedNoteWork);
                 adapterWork.notifyDataSetChanged();
@@ -288,7 +284,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
         //Проверка кода создания заметки
         if (requestCode==101){
             //Если заметка создавалась в разделе "Личное"
-            if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+            if (get_selected_folder.equalsIgnoreCase("Личное")) {
                 //Проверка успешности результатирующего кода
                 if(resultCode== Activity.RESULT_OK) {
                     //Создание новой заметки
@@ -310,7 +306,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
                 }
             }
             //Если заметка создавалась в разделе "Работа", те же действия, что для раздела "Личное"
-            else  if (get_selected_folder1.equalsIgnoreCase("Работа")) {
+            else  if (get_selected_folder.equalsIgnoreCase("Работа")) {
                 if (resultCode == Activity.RESULT_OK) {
                     WorkNotes new_work_notes = new WorkNotes();
                     try {
@@ -328,7 +324,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
         //Проверка кода редактирования заметки
         if (requestCode==102){
             //Если заметка создавалась в разделе "Личное"
-            if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+            if (get_selected_folder.equalsIgnoreCase("Личное")) {
                 //Проверка успешности результатирующего кода
                 if(resultCode== Activity.RESULT_OK) {
                     //Создание новой заметки
@@ -350,7 +346,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
                 }
             }
             //Если заметка создавалась в разделе "Работа", те же действия, что для раздела "Личное"
-            else if (get_selected_folder1.equalsIgnoreCase("Работа")) {
+            else if (get_selected_folder.equalsIgnoreCase("Работа")) {
                 if (resultCode == Activity.RESULT_OK) {
                     WorkNotes new_work_notes = new   WorkNotes();
                     try {
@@ -373,7 +369,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
         List<PersonalNotes> filteredListPersonal = new ArrayList<>();
         List<WorkNotes> filteredListWork = new ArrayList<>();
         //Если поиск выполняется в разделе "Личное"
-        if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+        if (get_selected_folder.equalsIgnoreCase("Личное")) {
             //Сравнение отдельной составляющей со всем списком
             for (PersonalNotes singleNote : personalnotes) {
                 //Поиск по названию заметки и тексту заметки без учёта регистра
@@ -387,7 +383,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
             adapterPersonal.filterListPersonal(filteredListPersonal);
         }
         //Если поиск выполняется в разделе "Работа", те же действия, что для раздела "Личное"
-        else if (get_selected_folder1.equalsIgnoreCase("Работа")){
+        else if (get_selected_folder.equalsIgnoreCase("Работа")){
             for (WorkNotes singleNoteWork : worknotes) {
                 if (singleNoteWork.getTitle().toLowerCase().contains(newText.toLowerCase())
                         || singleNoteWork.getText().toLowerCase().contains(newText.toLowerCase())) {
