@@ -1,5 +1,6 @@
 package com.example.my_notes;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
 import androidx.cardview.widget.CardView;
@@ -7,6 +8,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -92,7 +94,7 @@ public class NotesListActivity extends AppCompatActivity {
         //Получение базы данных
         dataBase = AppDataBase.getInstance(this);
         //Получения данных из таблицы "PersonalBD"
-        personalnotes = dataBase.noteDAO().getAll();
+        personalnotes = dataBase.personalDAO().getAll();
         //Получения данных из таблицы "WorkBD"
         worknotes = dataBase.workDAO().getAll();
 
@@ -183,4 +185,57 @@ public class NotesListActivity extends AppCompatActivity {
 
         }
     };
+
+    //Получение данных от активности NotesListActivity и сохранение заметки в БД
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+        //Проверка кода создания заметки
+        if (requestCode==101){
+            //Если заметка создавалась в разделе "Личное"
+            if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+                //Проверка успешности результатирующего кода
+                if(resultCode== Activity.RESULT_OK) {
+                    //Создание новой заметки
+                    PersonalNotes new_personal_notes = new PersonalNotes();
+                    try {
+                        //Получение введённой заметки
+                        new_personal_notes = (PersonalNotes) data.getSerializableExtra("note");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //Помещение заметки в таблицу "Личное"
+                    dataBase.personalDAO().insert(new_personal_notes);
+                    //Очистка списка
+                    personalnotes.clear();
+                    //Добавление всех данных таблицы PersonalBD в список
+                    personalnotes.addAll(dataBase.personalDAO().getAll());
+                    //Данные изменились, перерисовка списка на экране
+                    adapterPersonal.notifyDataSetChanged();
+                }
+            }
+            //Если заметка создавалась в разделе "Работа"
+            else  if (get_selected_folder1.equalsIgnoreCase("Работа")) {
+                //Проверка успешности результатирующего кода
+                if (resultCode == Activity.RESULT_OK) {
+                    //Создание новой заметки
+                    WorkNotes new_work_notes = new WorkNotes();
+                    try {
+                        //Получение введённой заметки
+                        new_work_notes = ( WorkNotes) data.getSerializableExtra("note");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //Помещение заметки в таблицу "Работа"
+                    dataBase.workDAO().insert(new_work_notes);
+                    //Очистка списка
+                    worknotes.clear();
+                    //Добавление всех данных таблицы WorklBD в список
+                    worknotes.addAll(dataBase.workDAO().getAll());
+                    //Данные изменились, перерисовка списка на экране
+                    adapterWork.notifyDataSetChanged();
+                }
+            }
+        }
+    }
 }

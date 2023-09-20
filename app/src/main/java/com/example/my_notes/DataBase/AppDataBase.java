@@ -27,6 +27,6 @@ public abstract class AppDataBase extends RoomDatabase {
         return database;
     }
     //Доступ к манипулированию данными
-    public abstract PersonalDAO noteDAO();
+    public abstract PersonalDAO personalDAO();
     public abstract WorkDAO workDAO();
 }
