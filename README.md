@@ -27,56 +27,83 @@ ________________________________________________________________________________
 
 2. Разделы "Личное" и "Работа"
 
+<p float="left">
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Раздел_Личное_.png" width=30% height=30%>
+&nbsp;&nbsp;
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Раздел_Работа_.png" width=30% height=30%>
+</p>
 
 
 3. Создание заметки
 
+<p float="left">
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Создание_заметки_Раздел_Личное_.png" width=30% height=30%>
+&nbsp;&nbsp;
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Создание_заметки_Раздел_Работа_.png" width=30% height=30%>
+</p>
 
 
 4. Редактирование заметки
 
+<p float="left">
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/редактирование_заметки_Раздел_Личное.png" width=30% height=30%>
+&nbsp;&nbsp;
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/редактирование_заметки_Раздел_Работа.png" width=30% height=30%>
+</p>
 
 
 5. Всплывающее сообщение при сохранении пустой заметки
 
+<p float="left">
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Всплывающее_сообщение_Сохранение_Раздел_Личное.png" width=30% height=30%>
+&nbsp;&nbsp;
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Всплывающее_сообщение_Сохранение.png" width=30% height=30%>
+</p>
 
 
 6. Поиск заметки
 
+<p float="left">
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Поиск_заметки_Раздел_Личное.png" width=30% height=30%>
+&nbsp;&nbsp;
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Поиск_заметки_Раздел_Работа.png" width=30% height=30%>
+</p>
 
 
 7. Всплывающее меню при длительном нажатии на заметку
 
+<p float="left">
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Всплывающее_меню_раздел_Личное.png" width=30% height=30%>
+&nbsp;&nbsp;
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Всплывающее_меню_раздел_Работа.png" width=30% height=30%>
+</p>
 
 
 8. Закрепление заметки
 
+<p float="left">
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Закрепление_заметки_раздел_Личное.png" width=30% height=30%>
+&nbsp;&nbsp;
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Закрепление_заметки_раздел_Работа.png" width=30% height=30%>
+</p>
 
 
 9. Открепление заметки
 
+<p float="left">
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Открепление_заметки_раздел_Личное.png" width=30% height=30%>
+&nbsp;&nbsp;
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Открепление_заметки_раздел_Работа.png" width=30% height=30%>
+</p>
 
 
 10. Удаление заметки
 
+<p float="left">
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Удаление_заметки_раздел_Личное.png" width=30% height=30%>
+&nbsp;&nbsp;
 <img src="https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Удаление_заметки_раздел_Работа.png" width=30% height=30%>
+</p>
 
 _________________________________________________________________________________________________________
 
