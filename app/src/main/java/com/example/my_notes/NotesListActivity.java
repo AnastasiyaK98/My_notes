@@ -227,8 +227,63 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
     //Этот метод будет вызываться при щелчке по элементу меню, если сам элемент еще не обработал событие
     @Override
     public boolean onMenuItemClick(MenuItem item) {
-
-
+        //Если выбран пункт меню Закрепить/Открепить
+        if (item.getItemId()==R.id.pin) {
+            //Если в разделе "Личное"
+            if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+                //Если заметка откреплена
+                if (selectedNotePersonal.isPinned()) {
+                    //Обновление значения pin в таблице базы данных
+                    dataBase.personalDAO().pin(selectedNotePersonal.getUid(), false);
+                    //Вывод всплывающего сообщения
+                    Toast.makeText(NotesListActivity.this, R.string.unpinned, Toast.LENGTH_SHORT).show();
+                } else {
+                    //Обновление значения pin в таблице базы данных
+                    dataBase.personalDAO().pin(selectedNotePersonal.getUid(), true);
+                    Toast.makeText(NotesListActivity.this, R.string.pinned, Toast.LENGTH_SHORT).show();
+                }
+                personalnotes.clear();
+                personalnotes.addAll(dataBase.personalDAO().getAll());
+                //Перерисовка списка
+                adapterPersonal.notifyDataSetChanged();
+            }
+            //Если в разделе "Работа", действия те же, что и для раздела "Личное"
+            else if (get_selected_folder1.equalsIgnoreCase("Работа")) {
+                if (selectedNoteWork.isPinned()) {
+                    dataBase.workDAO().pin(selectedNoteWork.getUid(), false);
+                    Toast.makeText(NotesListActivity.this, R.string.unpinned, Toast.LENGTH_SHORT).show();
+                } else {
+                    dataBase.workDAO().pin(selectedNoteWork.getUid(), true);
+                    Toast.makeText(NotesListActivity.this, R.string.pinned, Toast.LENGTH_SHORT).show();
+                }
+                worknotes.clear();
+                worknotes.addAll(dataBase.workDAO().getAll());
+                adapterWork.notifyDataSetChanged();
+            }
+            return true;
+        }
+        //Если выбран пункт меню Удалить
+        if(item.getItemId()==R.id.delete) {
+            //Для раздела "Личное"
+            if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+                //Удаление выбранной заметки из таблицы БД
+                dataBase.personalDAO().delete(selectedNotePersonal);
+                //Удаление выбранной заметки из списка заметок
+                personalnotes.remove(selectedNotePersonal);
+                //Перерисовка списка на экране
+                adapterPersonal.notifyDataSetChanged();
+                //Вывод всплываюшего сообщения
+                Toast.makeText(NotesListActivity.this, R.string.delete, Toast.LENGTH_SHORT).show();
+            }
+            //Для раздела "Работа", действия те же, что и для раздела "Личное"
+            else if (get_selected_folder1.equalsIgnoreCase("Работа")) {
+                dataBase.workDAO().delete(selectedNoteWork);
+                worknotes.remove(selectedNoteWork);
+                adapterWork.notifyDataSetChanged();
+                Toast.makeText(NotesListActivity.this, R.string.delete, Toast.LENGTH_SHORT).show();
+            }
+            return true;
+        }
         return false;
     }
 
