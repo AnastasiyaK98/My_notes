@@ -133,8 +133,11 @@ public class NotesTakerActivity extends AppCompatActivity {
 
                 //Если заметка создаётся в разделе "Личное"
                 if (getSelected_folder.equalsIgnoreCase("Личное")) {
-                    //Создание новой заметки
-                    personalnotes = new PersonalNotes();
+                    //Если заметка не старая
+                    if(!isOldNote) {
+                        //Создание новой заметки
+                        personalnotes = new PersonalNotes();
+                    }
                     //Получение названия заметки из поля ввода
                     personalnotes.setTitle(title);
                     //Получение текста заметки из поля ввода
