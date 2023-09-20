@@ -22,7 +22,7 @@ ________________________________________________________________________________
 
 1. Главное меню
 
-![Изображение](https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Главное_меню.png =40%)
+![Изображение](https://github.com/AnastasiyaK98/My_notes/blob/master/Screenshots/Главное_меню.png) {:height="100px" width="100px"}.
 
 
 2. Разделы "Личное" и "Работа"
