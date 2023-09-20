@@ -32,7 +32,7 @@ public interface PersonalDAO {
     //@Delete - аннотация, которая позволяет выполнить удаление некоторых строк в таблице базы данных.
     @Delete
     void delete(PersonalNotes note);
-    //Обновление при откреплении заметки
+    //Обновление при закреплении/откреплении заметки
     @Query("UPDATE PersonalBD SET  pinned =:pin WHERE uid =:uid")
     void pin (int uid, boolean pin);
 }

@@ -31,7 +31,7 @@ public interface WorkDAO {
     //@Delete - аннотация, которая позволяет выполнить удаление некоторых строк в таблице базы данных.
     @Delete
     void delete(WorkNotes note);
-    //Обновление при откреплении заметки
+    //Обновление при закреплении/откреплении заметки
     @Query("UPDATE WorkBD SET  pinned =:pin WHERE uid =:uid")
     void pin (int uid, boolean pin);
 }

@@ -67,16 +67,14 @@ public class MainActivity extends AppCompatActivity {
                 finish();
             }
         });
-        //Раздел "Работа"
+        //Раздел "Работа", те же действия, что для раздела "Личное"
         work.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 selected_folder = "Работа";
                 personal.setBackgroundResource(R.drawable.rounding);
                 work.setBackgroundResource(R.drawable.rounding_color);
-                //Переход из MainActivity в NotesListActivity
                 Intent intent = new Intent(MainActivity.this, NotesListActivity.class);
-                //Передача значения - строка с названием выбранного раздела
                 intent.putExtra("selected_folder", selected_folder);
                 startActivity(intent);
                 finish();

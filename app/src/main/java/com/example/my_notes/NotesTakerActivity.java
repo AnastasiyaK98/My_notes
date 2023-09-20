@@ -153,30 +153,20 @@ public class NotesTakerActivity extends AppCompatActivity {
                     //Завершение активности
                     finish();
                 }
-                //Если заметка создаётся в разделе "Работа"
+                //Если заметка создаётся в разделе "Работа", те же действия, что для раздела "Личное"
                 else if (getSelected_folder.equalsIgnoreCase("Работа")) {
-                    //Если заметка не старая
                     if(!isOldNote) {
-                        //Создание новой заметки
                         worknotes = new WorkNotes();
                     }
-                    //Получение названия заметки из поля ввода
                     worknotes.setTitle(title);
-                    //Получение текста заметки из поля ввода
                     worknotes.setText(description);
-                    //Получение даты создания заметки
                     worknotes.setDate(formater.format(date));
-                    //Создание новой Activity
                     Intent intent = new Intent();
-                    //Передача заметки
                     intent.putExtra("note",   worknotes);
-                    //Возвращение результата в вызвавшую активность
                     setResult(Activity.RESULT_OK, intent);
-                    //Завершение активности
                     finish();
                 }
             }
         });
-
     }
 }

@@ -15,10 +15,10 @@ public abstract class AppDataBase extends RoomDatabase {
     private static AppDataBase database;
     private static String DataBase_Name = "AppMyNotes";
     //Создание и возврат Базы Данных (доступно из других ативностей)
-    //Если база данных не создана - то она создаётся
-    //allowMainThreadQueries() - разрешает запросы к бд в главном потоке
-    //fallbackToDestructiveMigration() - разрешено деструктивно воссоздавать таблицы базы данных из определенных версий
     public synchronized static AppDataBase getInstance(Context context) {
+        //Если база данных не создана - то она создаётся
+        //allowMainThreadQueries() - разрешает запросы к бд в главном потоке
+        //fallbackToDestructiveMigration() - разрешено деструктивно воссоздавать таблицы базы данных из определенных версий
         if (database == null) {
             database = Room.databaseBuilder(context.getApplicationContext(), AppDataBase.class, DataBase_Name)
                     .allowMainThreadQueries().fallbackToDestructiveMigration()

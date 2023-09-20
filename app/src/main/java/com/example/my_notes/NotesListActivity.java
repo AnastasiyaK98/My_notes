@@ -123,7 +123,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
             }
         });
 
-        //Событие при поиске заметки
+        //Событие при выполнении поиска заметки
         search_home.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
             @Override
             //Поиск при нажатии на клавишу
@@ -149,7 +149,7 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
         recyclerView.setAdapter(adapterPersonal);
     }
 
-    //Привязка  recyclerView с заметками к адаптеру отображения для таблицы "Работа"
+    //Привязка  recyclerView с заметками к адаптеру отображения для таблицы "Работа", те же действия, что для раздела "Личное"
     private void updateRecyclreWork (List<WorkNotes> works) {
         recyclerView.setHasFixedSize(true);
         recyclerView.setLayoutManager(new StaggeredGridLayoutManager(2, LinearLayoutManager.VERTICAL));
@@ -185,27 +185,21 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
 
 
     //Таблица "Работа"
-    //Открытие заметки  для редактирования коротким нажатием на неё
+    //Открытие заметки  для редактирования коротким нажатием на неё, те же действия, что для раздела "Личное"
     private final WorkNotesClickListener worknotesClickListener = new WorkNotesClickListener() {
         @Override
         public void onClick(WorkNotes worknotes) {
-            //Переход из NotesListActivity в NotesTakerActivity
             Intent intent=new Intent(NotesListActivity.this, NotesTakerActivity.class);
-            //Передача значения из worknotes
             intent.putExtra("old_note",  worknotes);
-            //Передача названия выбранного раздела
             intent.putExtra("selected_folder_name", get_selected_folder1);
-            //Запуск новой Activity, возвращающей результат при завершении в виде requestCode 102- редактирование заметки
             startActivityForResult(intent, 102);
         }
 
-        //Долгое нажатие вызывет меню закрепления/удаления заметки
+        //Долгое нажатие вызывет меню закрепления/удаления заметки, те же действия, что для раздела "Личное"
         @Override
         public void onLongClick(WorkNotes worknotes, CardView cardView) {
             selectedNoteWork = new WorkNotes();
-            //Заметка, на которую происходит нажатие
             selectedNoteWork=worknotes;
-            //Вызов ысплывающего меню
             showPopUp (cardView);
         }
     };
@@ -315,25 +309,18 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
                     adapterPersonal.notifyDataSetChanged();
                 }
             }
-            //Если заметка создавалась в разделе "Работа"
+            //Если заметка создавалась в разделе "Работа", те же действия, что для раздела "Личное"
             else  if (get_selected_folder1.equalsIgnoreCase("Работа")) {
-                //Проверка успешности результатирующего кода
                 if (resultCode == Activity.RESULT_OK) {
-                    //Создание новой заметки
                     WorkNotes new_work_notes = new WorkNotes();
                     try {
-                        //Получение введённой заметки
                         new_work_notes = ( WorkNotes) data.getSerializableExtra("note");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    //Помещение заметки в таблицу "Работа"
                     dataBase.workDAO().insert(new_work_notes);
-                    //Очистка списка
                     worknotes.clear();
-                    //Добавление всех данных таблицы WorklBD в список
                     worknotes.addAll(dataBase.workDAO().getAll());
-                    //Данные изменились, перерисовка списка на экране
                     adapterWork.notifyDataSetChanged();
                 }
             }
@@ -362,25 +349,18 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
                     adapterPersonal.notifyDataSetChanged();
                 }
             }
-            //Если заметка создавалась в разделе "Работа"
+            //Если заметка создавалась в разделе "Работа", те же действия, что для раздела "Личное"
             else if (get_selected_folder1.equalsIgnoreCase("Работа")) {
-                //Проверка успешности результатирующего кода
                 if (resultCode == Activity.RESULT_OK) {
-                    //Создание новой заметки
                     WorkNotes new_work_notes = new   WorkNotes();
                     try {
-                        //Получение введённой заметки
                         new_work_notes = (WorkNotes) data.getSerializableExtra("note");
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
-                    //Обновление заметки в таблице "Работа"
                     dataBase.workDAO().update(new_work_notes.getUid(), new_work_notes.getTitle(), new_work_notes.getText());
-                    //Очистка списка
                     worknotes.clear();
-                    //Добавление всех данных таблицы WorkBD в список
                     worknotes.addAll(dataBase.workDAO().getAll());
-                    //Данные изменились, перерисовка списка на экране
                     adapterWork.notifyDataSetChanged();
                 }
             }
@@ -406,18 +386,14 @@ public class NotesListActivity extends AppCompatActivity implements PopupMenu.On
             //Обновление списка на экране
             adapterPersonal.filterListPersonal(filteredListPersonal);
         }
-        //Если поиск выполняется в разделе "Работа"
+        //Если поиск выполняется в разделе "Работа", те же действия, что для раздела "Личное"
         else if (get_selected_folder1.equalsIgnoreCase("Работа")){
-            //Сравнение отдельной составляющей со всем списком
             for (WorkNotes singleNoteWork : worknotes) {
-                //Поиск по названию заметки и тексту заметки без учёта регистра
                 if (singleNoteWork.getTitle().toLowerCase().contains(newText.toLowerCase())
                         || singleNoteWork.getText().toLowerCase().contains(newText.toLowerCase())) {
-                    //Добавляем в список найденных заметок
                     filteredListWork.add(singleNoteWork);
                 }
             }
-            //Обновление списка на экране
             adapterWork.filterListWork(filteredListWork);
         }
     }
