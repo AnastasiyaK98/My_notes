@@ -11,4 +11,6 @@
     <string name="name_title_hint">Введите название заметки:</string>
     <string name="hint_notes_text">Введите текст заметки:</string>
     <string name="no_notes_text">Необходимо добавить текст.</string>
+    <string name="Pin">Закрепить/Открепить</string>
+    <string name="Delete">Удалить</string>
 </resources>

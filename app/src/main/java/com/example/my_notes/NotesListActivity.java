@@ -11,9 +11,12 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager;
 import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.PopupMenu;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.my_notes.DataBase.AppDataBase;
 import com.example.my_notes.Models.PersonalNotes;
@@ -23,7 +26,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import java.util.ArrayList;
 import java.util.List;
 
-public class NotesListActivity extends AppCompatActivity {
+public class NotesListActivity extends AppCompatActivity implements PopupMenu.OnMenuItemClickListener{
 
     //Переменная для получения значения о том какой раздел выбран
     String get_selected_folder;
@@ -50,7 +53,7 @@ public class NotesListActivity extends AppCompatActivity {
     //Поичковая строка
     SearchView search_home;
     //Выбранная заметка "Личное"
-    PersonalNotes selectedNote;
+    PersonalNotes selectedNotePersonal;
     //Выбранная заметка "Работа"
     WorkNotes selectedNoteWork;
     @Override
@@ -172,9 +175,14 @@ public class NotesListActivity extends AppCompatActivity {
         //Долгое нажатие вызывет меню закрепления/удаления заметки
         @Override
         public void onLongClick(PersonalNotes personalnotes, CardView cardView) {
-
+            selectedNotePersonal = new PersonalNotes();
+            //Заметка, на которую происходит нажатие
+            selectedNotePersonal=personalnotes;
+            //Вызов ысплывающего меню
+            showPopUp (cardView);
         }
     };
+
 
     //Таблица "Работа"
     //Открытие заметки  для редактирования коротким нажатием на неё
@@ -194,9 +202,35 @@ public class NotesListActivity extends AppCompatActivity {
         //Долгое нажатие вызывет меню закрепления/удаления заметки
         @Override
         public void onLongClick(WorkNotes worknotes, CardView cardView) {
-
+            selectedNoteWork = new WorkNotes();
+            //Заметка, на которую происходит нажатие
+            selectedNoteWork=worknotes;
+            //Вызов ысплывающего меню
+            showPopUp (cardView);
         }
     };
+
+
+    //Меню выбора действия
+    private void showPopUp(CardView cardView) {
+        //Всплывающее меню, привязанное к элементу cardView
+        PopupMenu popupMenu = new PopupMenu(this, cardView);
+        //Прослушиватель для ответа на события щелчка по пункту меню
+        popupMenu.setOnMenuItemClickListener(this);
+        //Получение всплывающего меню из xml-файла по его id
+        popupMenu.inflate(R.menu.popup_menu);
+        //Показать всплывающее меню
+        popupMenu.show();
+    }
+
+    //Действия при выборе прикрепления/открепления и удалении заметок
+    //Этот метод будет вызываться при щелчке по элементу меню, если сам элемент еще не обработал событие
+    @Override
+    public boolean onMenuItemClick(MenuItem item) {
+
+
+        return false;
+    }
 
     //Получение данных от активности NotesListActivity и сохранение/обновлении заметки в БД
     @Override
