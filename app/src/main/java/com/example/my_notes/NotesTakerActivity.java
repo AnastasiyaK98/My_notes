@@ -103,7 +103,7 @@ public class NotesTakerActivity extends AppCompatActivity {
             try {
                 //Получение исходной заметки
                 worknotes = (WorkNotes) getIntent().getSerializableExtra("old_note");
-                //Извлечени названия заметки и помещение в поле ввода  editText_title
+                //Извлечени названия заметки и помещение в поле ввода editText_title
                 editText_title.setText(worknotes.getTitle());
                 //Извлечени текста заметки и помещение в поле ввода  editText_notes
                 editText_notes.setText(worknotes.getText());
@@ -155,8 +155,11 @@ public class NotesTakerActivity extends AppCompatActivity {
                 }
                 //Если заметка создаётся в разделе "Работа"
                 else if (getSelected_folder.equalsIgnoreCase("Работа")) {
-                    //Создание новой заметки
-                    worknotes = new WorkNotes();
+                    //Если заметка не старая
+                    if(!isOldNote) {
+                        //Создание новой заметки
+                        worknotes = new WorkNotes();
+                    }
                     //Получение названия заметки из поля ввода
                     worknotes.setTitle(title);
                     //Получение текста заметки из поля ввода

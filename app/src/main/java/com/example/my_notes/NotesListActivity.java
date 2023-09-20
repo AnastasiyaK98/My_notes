@@ -186,7 +186,7 @@ public class NotesListActivity extends AppCompatActivity {
         }
     };
 
-    //Получение данных от активности NotesListActivity и сохранение заметки в БД
+    //Получение данных от активности NotesListActivity и сохранение/обновлении заметки в БД
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -231,6 +231,53 @@ public class NotesListActivity extends AppCompatActivity {
                     //Очистка списка
                     worknotes.clear();
                     //Добавление всех данных таблицы WorklBD в список
+                    worknotes.addAll(dataBase.workDAO().getAll());
+                    //Данные изменились, перерисовка списка на экране
+                    adapterWork.notifyDataSetChanged();
+                }
+            }
+        }
+        //Проверка кода редактирования заметки
+        if (requestCode==102){
+            //Если заметка создавалась в разделе "Личное"
+            if (get_selected_folder1.equalsIgnoreCase("Личное")) {
+                //Проверка успешности результатирующего кода
+                if(resultCode== Activity.RESULT_OK) {
+                    //Создание новой заметки
+                    PersonalNotes new_personal_notes = new  PersonalNotes();
+                    try {
+                        //Получение введённой заметки
+                        new_personal_notes = (PersonalNotes) data.getSerializableExtra("note");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //Обновление заметки в таблице "Личное"
+                    dataBase.personalDAO().update(new_personal_notes.getUid(), new_personal_notes.getTitle(), new_personal_notes.getText());
+                    //Очистка списка
+                    personalnotes.clear();
+                    //Добавление всех данных таблицы PersonalBD в список
+                    personalnotes.addAll(dataBase.personalDAO().getAll());
+                    //Данные изменились, перерисовка списка на экране
+                    adapterPersonal.notifyDataSetChanged();
+                }
+            }
+            //Если заметка создавалась в разделе "Работа"
+            else if (get_selected_folder1.equalsIgnoreCase("Работа")) {
+                //Проверка успешности результатирующего кода
+                if (resultCode == Activity.RESULT_OK) {
+                    //Создание новой заметки
+                    WorkNotes new_work_notes = new   WorkNotes();
+                    try {
+                        //Получение введённой заметки
+                        new_work_notes = (WorkNotes) data.getSerializableExtra("note");
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    //Обновление заметки в таблице "Работа"
+                    dataBase.workDAO().update(new_work_notes.getUid(), new_work_notes.getTitle(), new_work_notes.getText());
+                    //Очистка списка
+                    worknotes.clear();
+                    //Добавление всех данных таблицы WorkBD в список
                     worknotes.addAll(dataBase.workDAO().getAll());
                     //Данные изменились, перерисовка списка на экране
                     adapterWork.notifyDataSetChanged();
